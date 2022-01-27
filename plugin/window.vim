@@ -10,12 +10,13 @@ function! QuickfixWindowOpened()
 endfunction
 
 function! ToggleQuickfixList()
+  let l:own = winnr()
   let l:opened = QuickfixWindowOpened()
   if l:opened == 1
-    echo 'cclose'
     exec 'cclose'
   else
     exec 'copen'
-    echo 'copen'
+    let l:cmd = 'exe '.l:own.' . "wincmd w"'
+    exec l:cmd
   endif
 endfunction
